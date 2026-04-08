@@ -8,6 +8,9 @@ $route = trim($request, "/");
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+var_dump($request);
+var_dump($route);
+die();
 if ($route === "" || "/") {
     if ($method === 'GET') {
 ?>

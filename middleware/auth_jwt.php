@@ -1,7 +1,7 @@
 <?php
 
-require_once '../vendor/autoload.php';
-$config = require '../config/jwt.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/../config/jwt.php';
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

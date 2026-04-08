@@ -4,8 +4,7 @@ error_reporting(E_ALL);
 
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-$base = "/task_manager/";
-$route = str_replace($base, "", $request);
+$route = trim($request, "/");
 
 $method = $_SERVER['REQUEST_METHOD'];
 

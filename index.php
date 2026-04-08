@@ -1,67 +1,32 @@
 <?php
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 header("Content-Type: application/json");
 
-$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// Obtener URI
+$request  = $_SERVER['REQUEST_URI'];
 
+// Limpiar query params
+$request = strtok($request, '?');
+
+// Obtener base-path dinamico
+$basePath = dirname($_SERVER['SCRIPT_NAME']);
+
+// Limpiar base-path
+$request = str_replace($basePath, '', $request);
+
+// Limpiar index.php 
+$request = str_replace("index.php", "", $request);
+
+// Limpiar ruta final
 $route = trim($request, "/");
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-// var_dump($request);
-// var_dump($route);
+//DEBUG
+// var_dump( $route, $method); 
 // die();
-if ($route === "" || "/") {
-    if ($method === 'GET') {
-?>
-        <!DOCTYPE html>
-        <html>
 
-        <head>
-            <title>Task Manager API</title>
-            <style>
-                body {
-                    font-family: Arial;
-                    padding: 40px;
-                    background: #f4f4f4;
-                }
-
-                h1 {
-                    color: #333;
-                }
-
-                code {
-                    background: #eee;
-                    padding: 4px;
-                }
-            </style>
-        </head>
-
-        <body>
-            <h1>Task Manager API</h1>
-            <h2>Deploy ok</h2>
-            <p>API de prueba para Subastas y Comercio</p>
-
-            <h2>Endpoints</h2>
-            <ul>
-                <li><code>POST /api/register</code></li>
-                <li><code>POST /api/login</code></li>
-                <li><code>GET /api/tasks</code></li>
-                <li><code>POST /api/tasks</code></li>
-                <li><code>PUT /api/tasks?id=1</code></li>
-                <li><code>DELETE /api/tasks?id=1</code></li>
-            </ul>
-
-            <h2>Autenticación</h2>
-            <p>Header: <code>Authorization: Bearer TOKEN</code></p>
-        </body>
-
-        </html>
-<?php
-        exit();
-    }
-}
-
-require_once "./routes/api.php";
+require_once __DIR__ . "/routes/api.php";

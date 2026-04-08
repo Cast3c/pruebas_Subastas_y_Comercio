@@ -3,6 +3,8 @@ require_once __DIR__ . "/../config/database.php";
 
 function getTasks($user){
     $conn  = $GLOBALS['conn'];
+    // var_dump($user);
+    // exit();
 
     //Accesos diferenciados por rol de user
     if($user->role === 'admin'){
@@ -44,7 +46,7 @@ function createTask($user){
 
     $title = htmlspecialchars($data['title']);
     $description = isset($data['description'])
-        ? htmlspecialchars($data['title'])
+        ? htmlspecialchars($data['description'])
         : "";
     $user_id = $user->id;
 
@@ -161,10 +163,10 @@ function deleteTask($user){
         return;
     }
 
-    // Verificar rol o id para permitir eliminacion
-    if($user->role !== 'admin' && $task['user_id'] != $user->id){
+    // Verificar rol o pertenencia para eliminar
+    if ($user->role !== "admin" && $task['user_id'] != $user->id) {
         http_response_code(403);
-        echo json_encode(["error" => "No autorizado"]);
+        echo json_encode(["error" => "No autorizado para eliminar esta tarea"]);
         return;
     }
 

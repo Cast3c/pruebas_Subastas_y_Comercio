@@ -6,6 +6,9 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 function login(){
+    // echo "Test";
+    // exit();
+
     session_start();
 
     $conn = $GLOBALS['conn'];
@@ -19,6 +22,13 @@ function login(){
 
     $email = $data["email"];
     $password = $data["password"];
+    
+    // Validacion de inputs
+    if(empty($email) || empty($password)){
+        http_response_code(400);
+        echo json_encode(["error" => "Email y password son obligatorios"]);
+        return;
+    }
 
     $stmt = $conn-> prepare("SELECT * FROM users WHERE email = ? ");
     $stmt-> bind_param("s", $email);
@@ -46,6 +56,7 @@ function login(){
             "message" => "Login exitoso",
             "token" => $jwt
         ]);
+        exit();
     }else {
         http_response_code(401);
         echo json_encode(["error" => "Credenciales invalidas"]);
@@ -67,7 +78,7 @@ function register(){
     $name = htmlspecialchars($data["name"]);
     $email = htmlspecialchars($data["email"]);
     $password = $data["password"];
-    $role = isset($data["role"]) ? $data["role"] : "user";
+    $role = "user";
 
     // Validacion de datos basicos
     if(empty($name) || empty($email) || empty($password)){
@@ -113,3 +124,4 @@ function register(){
     }
 
 }
+

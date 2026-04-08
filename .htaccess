@@ -1,9 +1,16 @@
-Options -Indexes
 
 RewriteEngine On
+
 RewriteBase /
 
+# Estas dos líneas permiten que PHP vea el Header Authorization
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+
+# Si el archivo o carpeta existe físicamente, úsalo
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^(.*)$ index.php [QSA,L]
+# Si NO existe, manda todo al index.php
+RewriteRule ^ index.php [QSA,L]

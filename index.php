@@ -2,6 +2,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+header("Content-Type: application/json");
+
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $route = trim($request, "/");
@@ -61,7 +63,5 @@ if ($route === "" || "/") {
         exit();
     }
 }
-
-header("Content-Type: application/json");
 
 require_once "./routes/api.php";

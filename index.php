@@ -62,10 +62,6 @@ if ($route === "" || "/") {
     }
 }
 
-echo "
-         API de prueba para Subastas y Comercio
-    ";
-
 header("Content-Type: application/json");
 
 require_once "./routes/api.php";

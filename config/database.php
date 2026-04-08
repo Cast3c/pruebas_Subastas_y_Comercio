@@ -7,5 +7,5 @@ $database = "u744129407_tasks";
 $conn = new mysqli($host, $user, $password, $database);
 
 if($conn->connect_error){
-    die(json_encode(["error" => "DB connection failed: " . $conn->connect_error ]));
+    die("DB connection failed: " . $conn->connect_error );
 }

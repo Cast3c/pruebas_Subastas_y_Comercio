@@ -10,7 +10,7 @@ function login(){
 
     $conn = $GLOBALS['conn'];
 
-    $config = require "../config/jwt.php";
+    $config = require __DIR__ . "/../config/jwt.php";
     $secret_key = $config['secret_key'];
     $issuer = $config['issuer'];
     $audience = $config['audience'];

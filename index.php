@@ -37,6 +37,7 @@ if ($route === "" || "/") {
 
         <body>
             <h1>Task Manager API</h1>
+            <h2>Deploy ok</h2>
             <p>API de prueba para Subastas y Comercio</p>
 
             <h2>Endpoints</h2>

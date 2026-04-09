@@ -1,9 +1,9 @@
 <?php
 // HOSTINGER
-$host = "localhost";
-$user = "u744129407_ricapa";
-$password = "861019rCp+";
-$database = "u744129407_tasks";
+$db_host = "localhost";
+$db_user = "u744129407_ricapa";
+$db_password = "861019rCp+";
+$db_database = "u744129407_tasks";
 
 // // LOCAL
 // $db_host = "localhost";

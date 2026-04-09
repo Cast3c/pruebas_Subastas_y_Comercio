@@ -15,6 +15,7 @@ if(!isset($headers['Authorization'])){
     exit();
 }
 
+// Token limpio
 $token = str_replace("Bearer ", "", $headers["Authorization"]);
 
 try {

@@ -1,6 +1,5 @@
 <?php
 
-
 require_once __DIR__ . "/../controllers/AuthController.php";
 require_once __DIR__ . "/../controllers/UserController.php";
 require_once __DIR__ . "/../controllers/TaskController.php";
@@ -16,6 +15,12 @@ if($route === 'register' && $method === 'POST'){
     register();
     exit();
 };
+
+//Logout
+if($route === 'logout' && $method === 'POST'){
+    logout();
+    exit();
+}
 
 // Listar usuarios (role:admin)
 if ($route === 'users' && $method === 'GET') {

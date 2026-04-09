@@ -1,15 +1,15 @@
 <?php
-// HOSTINGER
-$db_host = "localhost";
-$db_user = "u744129407_ricapa";
-$db_password = "861019rCp+";
-$db_database = "u744129407_tasks";
-
-// // LOCAL
+// // HOSTINGER
 // $db_host = "localhost";
-// $db_user = "root";
-// $db_password = "";
-// $db_database = "task_manager";
+// $db_user = "u744129407_ricapa";
+// $db_password = "861019rCp+";
+// $db_database = "u744129407_tasks";
+
+// LOCAL
+$db_host = "localhost";
+$db_user = "root";
+$db_password = "";
+$db_database = "task_manager";
 
 $conn = new mysqli($db_host, $db_user, $db_password, $db_database);
 

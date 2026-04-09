@@ -9,8 +9,6 @@ function login(){
     // echo "Test";
     // exit();
 
-    session_start();
-
     $conn = $GLOBALS['conn'];
 
     $config = require __DIR__ . "/../config/jwt.php";
@@ -37,6 +35,7 @@ function login(){
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
+
     if($user && password_verify($password, $user['password'])){
         $payload = [
             "iss" => $issuer,
@@ -51,6 +50,14 @@ function login(){
         ];
 
         $jwt = JWT::encode($payload, $secret_key, 'HS256');
+
+        // session_start();
+
+        // $_SESSION['user'] = [
+        //     "id" => $user['id'],
+        //     "email" => $user['email'],
+        //     "role" => $user['role']
+        // ];
 
         echo json_encode([
             "message" => "Login exitoso",
@@ -123,5 +130,12 @@ function register(){
         echo json_encode(["error" => "Error al registrar el usuario"]);
     }
 
+}
+
+function logout(){
+    session_start();
+    session_destroy();
+
+    echo json_encode(["message" => "Logout exitoso"]);
 }
 

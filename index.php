@@ -12,9 +12,6 @@ header("Content-Type: application/json");
 // Obtener URI
 $request  = $_SERVER['REQUEST_URI'];
 
-// Limpiar query params
-$request = strtok($request, '?');
-
 // Obtener base-path dinamico
 $basePath = dirname($_SERVER['SCRIPT_NAME']);
 

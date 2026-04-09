@@ -143,7 +143,7 @@ function updateUser($user){
     $role = htmlspecialchars($data['role']);
 
     // Se verifica existencia
-    $stmt = $conn->prepare("SELECT id FROM users WHERE id = ? ");
+    $stmt = $conn->prepare("SELECT id, name, email FROM users WHERE id = ? ");
     $stmt -> bind_param("i", $user_id);
     $stmt -> execute();
 

@@ -9,17 +9,17 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Content-Type: application/json");
 
-// Obtener URI
-$request  = $_SERVER['REQUEST_URI'];
+// // Obtener URI
+// $request  = $_SERVER['REQUEST_URI'];
 
-// Obtener base-path dinamico
-$basePath = dirname($_SERVER['SCRIPT_NAME']);
+// // Obtener base-path dinamico
+// $basePath = dirname($_SERVER['SCRIPT_NAME']);
 
-// Limpiar base-path
-$request = str_replace($basePath, '', $request);
+// // Limpiar base-path
+// $request = str_replace($basePath, '', $request);
 
 // Limpiar index.php 
-$request = str_replace("index.php", "", $request);
+$request = str_replace("/index.php", "", $request);
 
 // Limpiar ruta final
 $route = trim($request, "/");

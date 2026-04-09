@@ -55,7 +55,14 @@ function createTask($user){
     $stmt->bind_param("ssi", $title, $description, $user_id);
 
     if ($stmt->execute()) {
-        echo json_encode(["message" => "Tarea creada correctamente"]);
+        $new_id = $conn->insert_id;
+        echo json_encode([
+            "message" => "Tarea creada correctamente",
+            "id" => $new_id,
+            "title" => $title,
+            "description" => $description,
+            "user_id" => $user_id
+        ]);
     } else {
         http_response_code(500);
         echo json_encode(["error" => "Error al crear la tarea"]);
@@ -129,7 +136,13 @@ function updateTask($user){
     $stmt->bind_param("ssi", $title, $description, $task_id);
 
     if ($stmt->execute()) {
-        echo json_encode(["message" => "Tarea actualizada correctamente"]);
+        echo json_encode([
+            "message" => "Tarea actualizada correctamente",
+            "id"          => $task_id,
+            "title"       => $title,
+            "description" => $description,
+            "user_id"     => $task['user_id']
+        ]);
     } else {
         http_response_code(500);
         echo json_encode(["error" => "Error al actualizar la tarea"]);

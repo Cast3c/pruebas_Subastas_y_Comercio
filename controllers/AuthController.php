@@ -61,7 +61,12 @@ function login(){
 
         echo json_encode([
             "message" => "Login exitoso",
-            "token" => $jwt
+            "token" => $jwt,
+            "user" => [
+                "id" => $user['id'],
+                "email" => $user['email'],
+                "role" => $user['role']
+            ]
         ]);
         exit();
     }else {

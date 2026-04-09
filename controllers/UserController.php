@@ -90,7 +90,14 @@ function createUser($user){
     $stmt->bind_param("ssss", $name, $email, $passwordHash, $role);
 
     if($stmt->execute()){
-        echo json_encode(["message"=> "Usuario creado con exito por admin"]);
+        $new_id = $conn->insert_id;
+        echo json_encode([
+            "message"=> "Usuario creado con exito por admin",
+             "id"    => $new_id,
+            "name"  => $name,
+            "email" => $email,
+            "role"  => $role
+        ]);
     }else {
         http_response_code(500);
         echo json_encode(["error" => "Error al registrar el usuario"]);
@@ -161,7 +168,13 @@ function updateUser($user){
     $stmt -> bind_param("si", $role, $user_id);
     
     if($stmt->execute()){
-        echo json_encode(["message" => "Usario actualizado correctamente"]);
+        echo json_encode([
+            "message" => "Usario actualizado correctamente",
+            "id"   => $user_id,
+            "name" => $result_user['name'] ?? "",
+            "email"=> $result_user['email'] ?? "",
+            "role" => $role
+        ]);
     }else{
         http_response_code(500);
         echo json_encode(["error" => "Error al actualizar el usuario"]);
